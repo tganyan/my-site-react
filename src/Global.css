@@ -1,0 +1,14 @@
+body {
+  background-color: #282c34;
+}
+
+a {
+  color: #d04040;
+  text-decoration: none;
+  transition: all ease .25s;
+}
+
+a:hover {
+  color: #d8e1e8;
+}
+

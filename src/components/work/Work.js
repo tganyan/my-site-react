@@ -2,7 +2,7 @@ import React from 'react';
 
 function Work() {
 	return (
-		<h1>Previous check signers</h1>
+		<h1>Previous employers</h1>
 	)
 }
 

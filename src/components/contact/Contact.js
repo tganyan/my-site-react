@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
 
 // Component styles
@@ -49,11 +50,40 @@ class Contact extends React.Component {
     });
   };
 
+  resetForm = () => {
+  	document.getElementById('contact-form').reset();
+  }
+
+  handleSubmit = (event) => {
+  	event.preventDefault();
+
+  	const name = this.state.name;
+  	const email = this.state.email;
+  	const message = this.state.message;
+
+  	axios({
+  		method: 'POST',
+  		url: 'http://localhost:4000/send',
+  		data: {
+  			name: name,
+  			email: email,
+  			message: message
+  		}
+  	}).then((response) => {
+  		if (response.data.msg === 'success') {
+  			alert('Message sent');
+  			this.resetForm();
+  		} else if (response.data.msg === 'fail') {
+  			alert('Message failed to send.');
+  		}
+  	})
+  };
+
   render() {
   	return (
   		<div>
   			<h1>Contact me</h1>
-				<ContactForm>
+				<ContactForm id='contact' onSubmit={this.handleSubmit.bind(this)} method='POST'>
 					<ContactInput 
 						name='name'
 						placeholder='full name... or nickname... something I can call you'

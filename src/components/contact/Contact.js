@@ -29,15 +29,15 @@ const ContactSubmitButton = styled.button`
 	margin: 5% auto 0;
 `;
 
+const emptyState = {
+	name: '',
+	email: '',
+	message: '',
+}
+
 class Contact extends React.Component {
 	constructor(props) {
 		super(props);
-
-		const emptyState = {
-			name: '',
-			email: '',
-			message: '',
-		}
 
 		this.state = emptyState;
 	}
@@ -51,7 +51,7 @@ class Contact extends React.Component {
   };
 
   resetForm = () => {
-  	document.getElementById('contact-form').reset();
+  	this.setState(emptyState);
   }
 
   handleSubmit = (event) => {
@@ -83,7 +83,7 @@ class Contact extends React.Component {
   	return (
   		<div>
   			<h1>Contact me</h1>
-				<ContactForm id='contact' onSubmit={this.handleSubmit.bind(this)} method='POST'>
+				<ContactForm id='contact-form' onSubmit={this.handleSubmit.bind(this)} method='POST'>
 					<ContactInput 
 						name='name'
 						placeholder='full name... or nickname... something I can call you'
